@@ -1,0 +1,21 @@
+name: CommandItems
+version: 0.0.1
+main: com.commanditems.main.CommandItems
+description: Custom plugin requested by server XeroGenesys
+load: POSTWORLD
+authors: ['EndMySuffering']
+api-version: 1.16
+
+commands:
+  createitem:
+    description: Creates a command item.
+    usage: /createitem <name> <description> <command>
+  givecommanditem:
+    description: Gives the player a command Item.
+    usage: /givecommanditem <playername> <itemname>
+  listcommanditems:
+    description: Lists the command items.
+  removecommanditem:
+    usage: /removecommanditem <itemname>
+  opencommanditemlist:
+  importpresets:

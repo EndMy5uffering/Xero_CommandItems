@@ -1,0 +1,4 @@
+#Presets
+#modifyers name<-required, command<-required, description, material, executer=player|console, lifecount=[1,999] | -1 for INF
+#command-placeholders: {PLAYERNAME}
+name='sample1' material='KNOWLEDGE_BOOK' description='description' executer='player' lifecount='1' command='help'
