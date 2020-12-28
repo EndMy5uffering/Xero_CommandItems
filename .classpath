@@ -8,5 +8,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="D:/Bibliotheken/Desktop/BukkitServerProgrammierUmgebung/mysql-connector-java-8.0.17.jar"/>
 	<classpathentry kind="lib" path="D:/Bibliotheken/Desktop/BukkitServerProgrammierUmgebung/MinecraftServerSetups/Spigot-1.16.4/spigot-1.16.4.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/RingTransporter_0_0_1"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/The_Gate"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

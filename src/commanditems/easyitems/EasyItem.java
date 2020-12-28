@@ -16,7 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class EasyItem {
 
 	private ItemStack item;
-	private final ItemAction action;
+	private ItemAction action;
 	private Set<String> Permissions = new HashSet<String>();
 	
 	protected final static String code = "31415926535";
@@ -181,6 +181,10 @@ public class EasyItem {
 
 	public static String getLifecount() {
 		return LifeCount;
+	}
+
+	public void setAction(ItemAction action) {
+		this.action = action;
 	}
 	
 	

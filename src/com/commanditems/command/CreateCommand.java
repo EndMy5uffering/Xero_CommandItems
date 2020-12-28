@@ -19,8 +19,14 @@ import com.commanditems.main.CommandDispacher;
 import com.commanditems.main.ItemManager;
 
 import commanditems.easyitems.EasyItem;
-import commanditems.easyitems.Globals;
 import net.md_5.bungee.api.ChatColor;
+import rings.guis.RingMenuGUI;
+import rings.main.ConfigManager;
+import rings.main.RingsMain;
+import rings.ringbuilder.RingManager;
+import rings.ringbuilder.Rings;
+import thegate.gui.easygui.GUIBase;
+import thegate.gui.easygui.InventoryManager;
 
 public class CreateCommand implements CommandExecutor{
 
@@ -29,7 +35,7 @@ public class CreateCommand implements CommandExecutor{
 		Player p = null;
 		if(sender instanceof Player) {
 			p = (Player)sender;
-			if(!p.hasPermission(Globals.PERMISSIONADMINCREATEITEM)) {
+			if(!p.hasPermission(commanditems.easyitems.Globals.PERMISSIONADMINCREATEITEM)) {
 				p.sendMessage(ChatColor.RED + "You don't have permission to use this command!");
 				return true;
 			}
@@ -40,6 +46,7 @@ public class CreateCommand implements CommandExecutor{
 		String command = out.get("command");
 		String executer = out.get("executor", "console");
 		String lifecount = out.get("lifecount", "-1");
+		String doRings = out.get("rings", "false").toLowerCase();
 		
 		if(name.equals("null") || command.equals("null")) {
 			if(p == null) {
@@ -68,6 +75,20 @@ public class CreateCommand implements CommandExecutor{
 			CommandDispacher.dispach(x);
 		}, uuid);
 		item.setNbtTag("ItemUUID", uuid);
+		if(doRings.equals("true")) item.setAction(x -> {
+			if(!x.getPlayer().hasPermission(rings.main.Globals.Perms.rings_tools_activator.toString())) {
+				x.getPlayer().sendMessage(ConfigManager.TextConfig.getString("Messages.NoPermission").replace("&", "§"));
+				return;
+			}
+			
+			Rings rings = RingManager.getClosestRing(x.getPlayer(), 20);
+			if(rings != null) {
+				GUIBase base = new RingMenuGUI(x.getPlayer(), rings, RingsMain.ringsMain);
+				if(base.OpenGUI()) InventoryManager.addGUI(base);
+			}else {
+				x.getPlayer().sendMessage(ConfigManager.TextConfig.getString("Messages.NoRings").replace("&", "§"));
+			}
+		});
 		
 		ItemManager.addUUID(uuid, item);
 		ItemManager.addCommandUUID(uuid, command);
